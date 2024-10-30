@@ -44,6 +44,9 @@ git clone https://github.com/k2arim98/Gym_Management.git
 cd Gym_Management
 install dependencies:
  flutter pub get
+run the node server in lib/server :
+ node server
+-don't forget to create a database and update the server 
 run the app :
  flutter run.
 
