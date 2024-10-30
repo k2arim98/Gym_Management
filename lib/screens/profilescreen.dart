@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../provider/user_provider.dart';
+import 'package:gym_management/models/user.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -16,14 +21,22 @@ class ProfileScreen extends StatelessWidget {
           color: Colors.orange,
         ),
       ),
-      body: ProfileContent(),
+      body: ProfileContent(user: userProvider.user),
     );
   }
 }
 
 class ProfileContent extends StatelessWidget {
+  final User? user;
+
+  ProfileContent({this.user});
+
   @override
   Widget build(BuildContext context) {
+    // Check if user data is available
+    final userName = user?.fullName ?? 'K2arim98';
+    final userEmail = user?.email ?? 'karim@example.com';
+
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -43,7 +56,7 @@ class ProfileContent extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              'Khelifa Abdelkarim',
+              userName,
               style: TextStyle(
                 color: Colors.orange,
                 fontSize: 24,
@@ -52,7 +65,7 @@ class ProfileContent extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              'khelifa.abdelkarim98@gmail.com',
+              userEmail,
               style: TextStyle(
                 color: Colors.grey,
                 fontSize: 16,
@@ -63,18 +76,6 @@ class ProfileContent extends StatelessWidget {
               color: Colors.white70,
               thickness: 1,
             ),
-            SizedBox(height: 30),
-            ListTile(
-              leading: Icon(Icons.person, color: Colors.orange),
-              title: Text(
-                'Username',
-                style: TextStyle(color: Colors.white),
-              ),
-              subtitle: Text(
-                'k2arim98',
-                style: TextStyle(color: Colors.white70),
-              ),
-            ),
             ListTile(
               leading: Icon(Icons.email, color: Colors.orange),
               title: Text(
@@ -82,7 +83,7 @@ class ProfileContent extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
               subtitle: Text(
-                'khelifa.abdelkarim98@gmail.com',
+                userEmail,
                 style: TextStyle(color: Colors.white70),
               ),
             ),
@@ -93,7 +94,7 @@ class ProfileContent extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
               subtitle: Text(
-                '+1234567890',
+                '+1234567890', // Placeholder, adjust if you have phone number
                 style: TextStyle(color: Colors.white70),
               ),
             ),

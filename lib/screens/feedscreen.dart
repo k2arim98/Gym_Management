@@ -38,7 +38,7 @@ class FeedContent extends StatefulWidget {
 
 class _FeedContentState extends State<FeedContent> {
   final List<Map<String, String>> posts = [
-    {'author': 'John Doe', 'content': 'New workout routine is amazing! 💪🔥'},
+    {'author': 'AppleSeed', 'content': 'New workout routine is amazing! 💪🔥'},
     {
       'author': 'Anonymous',
       'content': 'Please add more weights in the gym. 🏋️‍♂️'

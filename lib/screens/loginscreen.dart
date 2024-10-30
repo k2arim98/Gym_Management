@@ -1,6 +1,16 @@
+// lib/screens/login_screen.dart
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http; // Import the http package
+import 'package:provider/provider.dart';
+import '../provider/user_provider.dart';
+import '../models/user.dart';
+import 'dart:convert'; // For decoding JSON
 
 class LoginScreen extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,23 +30,49 @@ class LoginScreen extends StatelessWidget {
               children: <Widget>[
                 CircleAvatar(
                   radius: 95,
-                  backgroundImage: AssetImage(''),
+                  backgroundImage: AssetImage('assets/your-logo.png'),
                 ),
                 SizedBox(height: 40),
                 _buildTextField(
+                  controller: emailController,
                   labelText: 'Email',
                   icon: Icons.email,
                 ),
                 SizedBox(height: 20),
                 _buildTextField(
+                  controller: passwordController,
                   labelText: 'Password',
                   icon: Icons.lock,
                   obscureText: true,
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/home');
+                  onPressed: () async {
+                    // Perform login authentication here
+
+                    // Fetch the user's full name from the server
+                    final email = emailController.text;
+                    final url =
+                        'http://localhost:3000/user/$email'; // Replace with your server URL
+                    final response = await http.get(Uri.parse(url));
+
+                    if (response.statusCode == 200) {
+                      final data = jsonDecode(response.body);
+                      final fullName = data['full_name'];
+
+                      // Set the user in the provider
+                      Provider.of<UserProvider>(context, listen: false)
+                          .setUser(User(email: email, fullName: fullName));
+
+                      print('User set: $fullName');
+                      // Navigate to the home screen
+                      Navigator.pushNamed(context, '/home');
+                      print('Navigation triggered');
+                    } else {
+                      // Handle error (e.g., show a message to the user)
+                      print(
+                          'Failed to fetch user data: ${response.statusCode}');
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.orange, // Button color
@@ -100,11 +136,14 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField(
-      {required String labelText,
-      required IconData icon,
-      bool obscureText = false}) {
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String labelText,
+    required IconData icon,
+    bool obscureText = false,
+  }) {
     return TextField(
+      controller: controller,
       obscureText: obscureText,
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(

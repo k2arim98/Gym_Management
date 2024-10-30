@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../provider/user_provider.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context).user;
+
     return Drawer(
       child: Container(
         color: Colors.black87,
@@ -26,7 +30,7 @@ class AppDrawer extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    'Khelifa Abdelkarim',
+                    user?.fullName ?? 'Guest',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -80,7 +84,9 @@ class AppDrawer extends StatelessWidget {
               leading: Icon(Icons.logout, color: Colors.white),
               title: Text('Logout', style: TextStyle(color: Colors.white)),
               onTap: () {
-                // Handle logout
+                // Clear user data and navigate to login screen
+                Provider.of<UserProvider>(context, listen: false).logout();
+                Navigator.pushReplacementNamed(context, '/');
               },
             ),
           ],

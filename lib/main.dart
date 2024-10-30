@@ -6,29 +6,35 @@ import 'screens/feedscreen.dart';
 import 'screens/storescreen.dart';
 import 'screens/profilescreen.dart';
 import 'screens/settingsscreen.dart';
+import 'package:provider/provider.dart';
+import 'package:gym_management/provider/user_provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => UserProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Gym Management',
       debugShowCheckedModeBanner: false,
-      title: 'Gym Management App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
+      home: LoginScreen(),
       routes: {
-        '/': (context) => LoginScreen(),
-        '/register': (context) => RegistrationScreen(),
         '/home': (context) => HomeScreen(),
+        '/profile': (context) => ProfileScreen(),
         '/feed': (context) => FeedScreen(),
         '/store': (context) => StoreScreen(),
-        '/profile': (context) => ProfileScreen(),
         '/settings': (context) => SettingsScreen(),
+        '/register': (context) => RegistrationScreen(),
       },
     );
   }

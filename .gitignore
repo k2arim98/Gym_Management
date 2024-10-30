@@ -41,3 +41,17 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Ignore IDE settings
+.vscode/
+
+# Node dependencies
+node_modules/
+package-lock.json
+package.json
+
+# iOS-related lock files
+ios/Podfile.lock
+
+# Flutter workspace settings
+gym_managment.code-workspace
