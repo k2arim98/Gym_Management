@@ -1,16 +1,48 @@
-# gym_management
+# Gym Management Mobile App
 
-A new Flutter project.
+A mobile application for managing gym memberships, tracking subscription statuses, and displaying gym-related statistics, developed using **Flutter**.
 
-## Getting Started
+## Table of Contents
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Screenshots](#screenshots)
+- [Technologies Used](#technologies-used)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Features
+- User profile with a drawer menu.
+- Displays gym statistics (e.g., number of days left in subscription).
+- Manage subscriptions and view user activity.
+- Customizable for different gyms and fitness centers.
+- Simple and intuitive user interface.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Installation
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Follow these steps to set up the project locally:
+
+### Prerequisites
+- **Flutter SDK** installed ([Get Flutter](https://flutter.dev/docs/get-started/install))
+- Android Studio / Xcode for mobile emulation 
+- A device emulator or physical device connected
+  
+
+### Clone the Repository
+```bash
+git clone https://github.com/k2arim98/Gym_Management.git
+cd Gym_Management
+install dependencies  flutter pub get
+run the app flutter run.
+
+## Installation
+
+Upon launching the app, users are prompted with a home screen showing their subscription status.
+The profile drawer allows users to navigate between the app sections.
+Admins or gym staff can view subscription statistics, and users can renew their subscriptions directly from the app.
+
+## Technologies Used
+- Frontend: Flutter
+- Backend: Node.Js, Express
+- Database: PostgreSQL
+- Authentication: JWT (Json Web Tokens) 
+
