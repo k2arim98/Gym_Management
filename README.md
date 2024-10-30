@@ -26,14 +26,6 @@ Follow these steps to set up the project locally:
 - Android Studio / Xcode for mobile emulation 
 - A device emulator or physical device connected
   
-
-### Clone the Repository
-```bash
-git clone https://github.com/k2arim98/Gym_Management.git
-cd Gym_Management
-install dependencies  flutter pub get
-run the app flutter run.
-
 ## Installation
 
 Upon launching the app, users are prompted with a home screen showing their subscription status.
@@ -44,5 +36,16 @@ Admins or gym staff can view subscription statistics, and users can renew their 
 - Frontend: Flutter
 - Backend: Node.Js, Express
 - Database: PostgreSQL
-- Authentication: JWT (Json Web Tokens) 
+- Authentication: JWT (Json Web Tokens)
+  
+### Clone the Repository
+```bash
+git clone https://github.com/k2arim98/Gym_Management.git
+cd Gym_Management
+install dependencies:
+ flutter pub get
+run the app :
+ flutter run.
+
+ 
 
